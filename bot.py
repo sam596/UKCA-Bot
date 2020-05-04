@@ -6,24 +6,13 @@ import re
 import requests
 import json
 from pyTwistyScrambler import scrambler333
-import country_converter as coco
+from country_converter import CountryConverter as cc
 from datetime import datetime, date
 from typing import Union
 from events import events, eventids
 from format_result import format_result
 from wca_format_date import wcadateformat
 import webhook
-
-cc = coco.CountryConverter()
-
-WCA_API = "https://www.worldcubeassociation.org/api/v0/"
-WCA_API_persons = WCA_API + "persons/"
-WCA_API_GB_competitions = WCA_API + "competitions?page=1&country_iso2=GB&start="
-
-Scramble_API = "http://scramble-web-api.herokuapp.com/scramble/"
-scrambnum = "?numberOfScrambler="
-
-modroleid = 293509055505235969
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -86,7 +75,7 @@ async def nickwcaid(ctx, nick, wcaid, user: discord.Member = ''):
     for r in ctx.message.author.roles:
         userroles.append(r.id)
     # if the user has specified a user to change and they are not a moderator.
-    if user != '' and modroleid not in userroles:
+    if user != '' and MODROLEID not in userroles:
         await ctx.send("You do not have the required permission.")
     elif wcaid == '1337MUMG69':
         await ctx.send("wow... so original...")
@@ -147,7 +136,7 @@ async def wcaid(ctx, wcaid, user: discord.Member = ''):
     for r in ctx.message.author.roles:
         userroles.append(r.id)
     # if the user has specified a user to change and they are not a moderator.
-    if user != '' and modroleid not in userroles:
+    if user != '' and MODROLEID not in userroles:
         await ctx.send("You do not have the required permission.")
     elif (user == '' and ctx.message.author.id == ctx.message.guild.owner_id):
         await ctx.send("Sorry, I can't edit the owner of the server.")
@@ -207,7 +196,7 @@ async def nick(ctx, nick, user: discord.Member = ''):
     for r in ctx.message.author.roles:
         userroles.append(r.id)
     # if the user has specified a user to change and they are not a moderator.
-    if user != '' and modroleid not in userroles:
+    if user != '' and MODROLEID not in userroles:
         await ctx.send("You do not have the required permission.")
     elif (user == '' and ctx.message.author.id == ctx.message.guild.owner_id):
         await ctx.send("Sorry, I can't edit the owner of the server.")
@@ -377,7 +366,7 @@ async def s(ctx, event: str, num=1):
     elif isevent:
         if event[-2:] == "bf":
             event = event[:-2] + "bld"
-        response = requests.get(Scramble_API + event + scrambnum + str(num))
+        response = requests.get(SCRAMBLE_API + event + SCRAMBLE_NUM + str(num))
         data = response.json()
         strsend = "```"
         for i in data["scrambles"]:
@@ -393,7 +382,7 @@ async def clear(ctx, num=1):
     for r in ctx.message.author.roles:
         userroles.append(r.id)
     # if the user has specified a user to change and they are not a moderator.
-    if modroleid not in userroles:
+    if MODROLEID not in userroles:
         await ctx.send("You do not have the required permission.")
     num = int(num)
     msg = await ctx.channel.history(limit=num+1).flatten()

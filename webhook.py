@@ -6,16 +6,16 @@ from discord import Webhook, RequestsWebhookAdapter
 from events import eventids
 from wca_format_date import wcadateformat
 from jsonmerge import merge
+from dotenv import load_dotenv
 
-webhook_url = "https://discordapp.com/api/webhooks/706529849078186046/0Ublk5p97v49lROomqeiVBaBiuP13jfuaL394baW9jc-RNF_jtjLnDRtHpz9JQKyw509"
-webhook = Webhook.from_url(webhook_url, adapter=RequestsWebhookAdapter())
+load_dotenv()
+webhook = Webhook.from_url(WEBHOOK_URL, adapter=RequestsWebhookAdapter())
 
-WCA_API = "https://staging.worldcubeassociation.org/api/v0/"
+WCA_API_persons = WCA_API + "persons/"
 WCA_API_upcoming_GB = WCA_API + "competitions?page=1&country_iso2=GB&start=" + date.today().isoformat()
 WCA_API_upcoming_XE = WCA_API + "competitions?country_iso2=XE&start=" + date.today().isoformat()
 WCA_API_upcoming_WC = WCA_API + "search/competitions?q=WCA%20World&start=" + date.today().isoformat()
 WCA_API_upcoming_EC = WCA_API + "search/competitions?q=WCA%20Euro&start=" + date.today().isoformat()
-
 
 with open("complist.txt") as f:
     complist = f.read().splitlines()
