@@ -1,7 +1,9 @@
 import discord
 import os
+import requests
 from discord.ext import commands
-from .lib import helpers as helper
+from .lib import helpers as helper, classes as cl
+
 
 class nickwcaid(commands.Cog):
     def __init__(self, client):
@@ -111,7 +113,7 @@ class nickwcaid(commands.Cog):
         if (await helper.nick_bar_check(ctx, nick, isuser)):
             return
         # just look up the user in WCA to return their first name in the confirmation message
-        response = requests.get(cl.WCA_API().persons(wcaid))
+        response = requests.get(cl.WCA_API().persons(user.display_name[-10:]))
         await user.edit(nick=(nick + user.display_name[-13:]))
         if response:
             data = response.json()

@@ -1,3 +1,5 @@
+#!/usr/bin/env python3.8
+
 from discord.ext import commands, tasks
 import discord
 import asyncio
