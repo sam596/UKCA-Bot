@@ -40,7 +40,7 @@ events["777"].append("v cube 7")
 events["777"].append("v-cube7")
 events["777"].append("v-cube 7")
 
-events["333bf"] = ["bld", "3bld", "333bf", "3x3 blindfolded", "3x3x3 blindfolded", "blindfolded", "blind", "3x3 blind", "3x3x3 blind", "rubik's cube without looking"]
+events["333bf"] = ["bld", "3bld", "333bf", "3x3 blindfolded", "3x3x3 blindfolded", "blindfolded", "blind", "3x3 blind", "3x3x3 blind", "rubik's cube without looking", "rubiks cube without looking"]
 events["333fm"] = ["fmc", "3fmc", "333fm", "3x3 fewest moves", "3x3x3 fewest moves", "fewest moves challenge", "rubik's cube but it's like an exam"]
 events["333oh"] = ["3oh", "33oh", "333oh", "3x3oh", "3x3x3oh", "3x3 one handed", "3x3x3 one handed", "3x3 one-handed", "3x3x3 one-handed", "oh", "3x3 oh", "3x3x3 oh", "rubik's cube using one hand", "fastest hand"]
 events["clock"] = ["clock", "clk", "rubiks clock", "rubik's clock", "the best event", "best event"]

@@ -7,22 +7,24 @@ def format_result(value, event, format):
         return 'DNF'
     elif value == -2:
         return 'DNS'
-    elif value == '':
+    elif value == '' or value == 0:
         return ''
     elif event == '333mbf' and format == 's':
         return mbld_decode(value)
     elif event == '333fm' and format == 's':
         return str(value)
     elif event == '333fm' and format == 'a':
-        return str(round(value / 100, 2))
+        return str('%.2f' % (value / 100))
     else:
         value /= 100
         if value >= 3600:
             return str(datetime.utcfromtimestamp(value).strftime("%H:%M:%S.%f")[:-4])
         if value >= 60:
             return str(datetime.utcfromtimestamp(value).strftime("%M:%S.%f").lstrip("0").replace(" ","0")[:-4])
-        else:
+        if value >= 1:
             return str(datetime.utcfromtimestamp(value).strftime("%S.%f").lstrip("0").replace(" ","0")[:-4])
+        else:
+            return "0" + str(datetime.utcfromtimestamp(value).strftime("%S.%f").lstrip("0").replace(" ","0")[:-4])
         return ''
 
 
