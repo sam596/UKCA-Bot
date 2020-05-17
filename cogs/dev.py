@@ -8,8 +8,8 @@ class dev_tools(commands.Cog):
         self.client = client
 
     @commands.command(pass_context=True, description="get message data")
-    async def ping(self, ctx, input):
-        await ctx.send(helper.country_lookup_iso2(ctx, input))
+    async def ping(self, ctx):
+        await ctx.send(ctx.guild.members)
 
     @commands.command(description = "delete last x messages")
     @commands.has_permissions(manage_messages=True)
