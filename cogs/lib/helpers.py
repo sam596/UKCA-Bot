@@ -6,7 +6,7 @@ from textwrap import dedent
 from . import classes as cl, events_dict
 from .format_result import format_result as fr
 import country_converter as coco
-from mysql import cursor, cnx
+from mysql_conn import cursor, cnx
 
 
 def wcaid_re(wcaid):
