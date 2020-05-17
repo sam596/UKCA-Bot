@@ -11,13 +11,16 @@ class dev_tools(commands.Cog):
     @commands.command(pass_context=True, description="get message data")
     async def ping(self, ctx):
         for user in ctx.guild.members:
-            if re.match("^[1-2][09][8012][0-9][A-Z]{4}[0-9]{2}$", user.nick[-10:]):
-                try:
-                    await ctx.send(user.nick[-10:])
-                except:
+            try:
+                if re.match("^[1-2][09][8012][0-9][A-Z]{4}[0-9]{2}$", user.nick[-10:]):
+                    try:
+                        await ctx.send(user.nick[-10:])
+                    except:
+                        await ctx.send("Failed for user " + user.nick)
+                else:
                     await ctx.send("Failed for user " + user.nick)
-            else:
-                await ctx.send("Failed for user " + user.nick)
+            except:
+                await ctx.send("Failed for user " + user.name)              
 
     @commands.command(description = "delete last x messages")
     @commands.has_permissions(manage_messages=True)
