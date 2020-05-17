@@ -108,7 +108,7 @@ def build_personstats_embed(data):
     embed.add_field(name="Competitions", value="**" + str(data["competition_count"]) + "**", inline = False)
     embed.add_field(name="Podiums", value="**" + str(data["medals"]["total"]) + "** - (Gold: " + str(data["medals"]["gold"]) + " Silver: " + str(data["medals"]["silver"]) + " Bronze: " + str(data["medals"]["bronze"]) + ")", inline = False)
     embed.add_field(name="Records", value="**" + str(data["records"]["total"]) + "** - (World: " + str(data["records"]["world"]) + " Continental: " + str(data["records"]["continental"]) + " National: " + str(data["records"]["national"]) + ")", inline = False)
-    cursor.execute("SELECT completedSolves FROM persons_extra WHERE id = {}".format(data['person']['wca_id']))
+    cursor.execute("SELECT completedSolves FROM persons_extra WHERE id = '{}'".format(data['person']['wca_id']))
     embed.add_field(name="Completed Solves", value=[v for v in cursor][0][0], inline = False)
     if data["person"]["delegate_status"] != None:
         embed.add_field(name="Delegate Status", value=data["person"]["delegate_status"], inline = False)
