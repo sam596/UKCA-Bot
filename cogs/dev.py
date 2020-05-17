@@ -10,7 +10,7 @@ class dev_tools(commands.Cog):
     @commands.command(pass_context=True, description="get message data")
     async def ping(self, ctx):
         for user in ctx.guild.members:
-            await ctx.send(user.nick)
+            await ctx.send(user.nick[-10:])
 
     @commands.command(description = "delete last x messages")
     @commands.has_permissions(manage_messages=True)
