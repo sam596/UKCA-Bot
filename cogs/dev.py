@@ -2,6 +2,7 @@ import discord
 import os
 from discord.ext import commands
 from .lib import helpers as helper
+import re
 
 class dev_tools(commands.Cog):
     def __init__(self, client):
