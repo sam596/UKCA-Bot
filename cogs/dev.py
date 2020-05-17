@@ -15,9 +15,9 @@ class dev_tools(commands.Cog):
                 try:
                     await ctx.send(user.nick[-10:])
                 except:
-                    await ctx.send("Failed for user", user.nick)
+                    await ctx.send("Failed for user " + user.nick)
             else:
-                await ctx.send("Failed for user", user.nick)
+                await ctx.send("Failed for user " + user.nick)
 
     @commands.command(description = "delete last x messages")
     @commands.has_permissions(manage_messages=True)
